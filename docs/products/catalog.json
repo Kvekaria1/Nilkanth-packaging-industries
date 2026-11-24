@@ -1,0 +1,211 @@
+
+{
+  "company": "Nilkanth Packaging Industries",
+  "categories": [
+    {
+      "name": "Standard Corrugated Boxes",
+      "slug": "standard-corrugated-boxes",
+      "description": "Everyday corrugated box styles engineered to suit product shape, packing operations and distribution conditions.",
+      "photos": ["mailer-cartons.jpg", "corrugated-board.jpg", "ecommerce-boxes.jpg", "stacked-cardboard.jpg"],
+      "products": [
+        "Regular Slotted Containers (RSC)",
+        "Half Slotted Containers (HSC)",
+        "Full Overlap Slotted Boxes (FOL)",
+        "Full Telescope Boxes (FTB)",
+        "Half Telescope Boxes (HTB)",
+        "Five Panel Folder Boxes (FPF)",
+        "One Piece Folder Boxes (OPF)",
+        "Self-Locking Boxes",
+        "Die-Cut Boxes",
+        "Mailer Boxes",
+        "Shipping Boxes",
+        "Export Boxes"
+      ]
+    },
+    {
+      "name": "Corrugated Boxes by Ply",
+      "slug": "corrugated-boxes-by-ply",
+      "description": "Select board construction to match the required compression strength, product weight and transit route.",
+      "photos": ["corrugated-board.jpg", "stacked-cardboard.jpg", "warehouse-cartons.jpg", "packaging-factory.jpg"],
+      "products": [
+        "3 Ply Corrugated Boxes",
+        "5 Ply Corrugated Boxes",
+        "7 Ply Corrugated Boxes",
+        "9 Ply Corrugated Boxes",
+        "11 Ply Boxes"
+      ]
+    },
+    {
+      "name": "Corrugated Boxes by Flute Type",
+      "slug": "corrugated-boxes-by-flute-type",
+      "description": "Choose a flute profile and wall build according to cushioning, stacking, print and handling needs.",
+      "photos": ["corrugated-board.jpg", "stacked-cardboard.jpg", "cardboard-insert.jpg"],
+      "products": [
+        "A Flute Boxes",
+        "B Flute Boxes",
+        "C Flute Boxes",
+        "E Flute Boxes",
+        "F Flute Boxes",
+        "BC Flute Boxes",
+        "EB Flute Boxes",
+        "Double Wall Boxes",
+        "Triple Wall Boxes"
+      ]
+    },
+    {
+      "name": "Printed Corrugated Boxes",
+      "slug": "printed-corrugated-boxes",
+      "description": "Corrugated packaging with artwork and information suited to your brand, warehouse and retail workflow.",
+      "photos": ["paper-cartons.jpg", "mailer-cartons.jpg", "corrugated-board.jpg", "packaging-factory.jpg"],
+      "products": [
+        "Flexographic Printed Boxes",
+        "Offset Printed Boxes",
+        "Multi-Colour Printed Boxes",
+        "Logo Printed Boxes",
+        "Barcode Printed Boxes",
+        "QR Code Printed Boxes"
+      ]
+    },
+    {
+      "name": "Custom Corrugated Boxes",
+      "slug": "custom-corrugated-boxes",
+      "description": "Made-to-requirement box solutions designed around product dimensions, packing methods and distribution.",
+      "photos": ["mailer-cartons.jpg", "ecommerce-boxes.jpg", "warehouse-cartons.jpg", "packaging-factory.jpg"],
+      "products": [
+        "Custom Size Boxes",
+        "Heavy Duty Boxes",
+        "Plain Corrugated Boxes",
+        "Printed Boxes-1",
+        "Export Packaging Boxes",
+        "Industrial Packaging"
+      ]
+    },
+    {
+      "name": "Corrugated Sheets",
+      "slug": "corrugated-sheets",
+      "description": "Corrugated board sheets and rolls for converting, interleaving, wrapping and protective packaging.",
+      "photos": ["corrugated-board.jpg", "stacked-cardboard.jpg", "cardboard-insert.jpg"],
+      "products": [
+        "2 Ply Sheets",
+        "3 Ply Sheets",
+        "5 Ply Sheets",
+        "7 Ply Sheets",
+        "Single Face Rolls"
+      ]
+    },
+    {
+      "name": "Corrugated Partitions & Inserts",
+      "slug": "corrugated-partitions-inserts",
+      "description": "Internal corrugated components that help separate, locate and protect products inside an outer carton.",
+      "photos": ["cardboard-insert.jpg", "corrugated-board.jpg", "mailer-cartons.jpg"],
+      "products": [
+        "Corrugated Partitions",
+        "Corrugated Dividers",
+        "Corrugated Inserts",
+        "Bottle Partitions",
+        "Protective Inserts"
+      ]
+    },
+    {
+      "name": "Retail & Display Packaging",
+      "slug": "retail-display-packaging",
+      "description": "Packaging formats that support efficient shelf replenishment and clear product presentation.",
+      "photos": ["paper-cartons.jpg", "mailer-cartons.jpg", "eco-packaging.jpg"],
+      "products": [
+        "Shelf Ready Packaging"
+      ]
+    },
+    {
+      "name": "Industry-Specific Packaging",
+      "slug": "industry-specific-packaging",
+      "description": "Packaging options tailored to the handling, storage and delivery needs of different industries.",
+      "photos": ["pharma-carton.jpg", "paper-cartons.jpg", "ecommerce-boxes.jpg", "warehouse-cartons.jpg", "packaging-factory.jpg"],
+      "products": [
+        "Pharmaceutical Packaging",
+        "FMCG Packaging Boxes",
+        "Textile Packaging",
+        "Engineering Packaging",
+        "Food & Beverage Packaging",
+        "Chemical Packaging",
+        "Electronics Packaging",
+        "Automotive Packaging",
+        "Ceramic Packaging",
+        "Glass Packaging Boxes",
+        "E-commerce Packaging"
+      ]
+    },
+    {
+      "name": "Sustainable Packaging",
+      "slug": "sustainable-packaging",
+      "description": "Paper-based packaging choices designed to support recyclable material streams and practical reuse.",
+      "photos": ["eco-packaging.jpg", "stacked-cardboard.jpg", "corrugated-board.jpg"],
+      "products": [
+        "Eco-Friendly Boxes",
+        "Recyclable Packaging",
+        "Sustainable Paper Packaging"
+      ]
+    }
+  ],
+  "photos": {
+    "corrugated-board.jpg": {
+      "alt": "Corrugated cardboard packaging with the board profile visible",
+      "source": "Simon Potts, Pexels",
+      "url": "https://www.pexels.com/photo/corrugated-cardboard-boxes-28316095/",
+      "license": "Pexels License"
+    },
+    "stacked-cardboard.jpg": {
+      "alt": "Stacked cardboard sheets and packaging board",
+      "source": "RDNE Stock project, Pexels",
+      "url": "https://www.pexels.com/photo/stacked-cardboards-8580789/",
+      "license": "Pexels License"
+    },
+    "cardboard-insert.jpg": {
+      "alt": "Close-up photograph of formed cardboard packaging and insert details",
+      "source": "Valentin Ivantsov, Pexels",
+      "url": "https://www.pexels.com/photo/close-up-of-cardboard-packaging-design-35708479/",
+      "license": "Pexels License"
+    },
+    "warehouse-cartons.jpg": {
+      "alt": "Corrugated cardboard boxes stacked in a warehouse",
+      "source": "Tim Mossholder, Pexels",
+      "url": "https://www.pexels.com/photo/cardboard-box-pile-in-warehouse-setting-36504458/",
+      "license": "Pexels License"
+    },
+    "packaging-factory.jpg": {
+      "alt": "Workers handling and packing goods in a factory",
+      "source": "Galib Rahman Nadim, Pexels",
+      "url": "https://www.pexels.com/photo/workers-packaging-goods-in-a-factory-setting-39351270/",
+      "license": "Pexels License"
+    },
+    "mailer-cartons.jpg": {
+      "alt": "Open and closed cardboard packaging boxes on a clean background",
+      "source": "Mediamodifier, Pexels",
+      "url": "https://www.pexels.com/photo/brown-cardboard-boxes-on-white-surface-8066709/",
+      "license": "Pexels License"
+    },
+    "pharma-carton.jpg": {
+      "alt": "Medicine carton packaging photographed on a clean background",
+      "source": "George Shervashidze, Pexels",
+      "url": "https://www.pexels.com/photo/white-and-blue-medicine-pack-9227780/",
+      "license": "Pexels License"
+    },
+    "paper-cartons.jpg": {
+      "alt": "Paperboard cartons displayed in a retail setting",
+      "source": "Joolsmagools, Pexels",
+      "url": "https://www.pexels.com/photo/assorted-egg-cartons-in-melbourne-grocery-38939313/",
+      "license": "Pexels License"
+    },
+    "ecommerce-boxes.jpg": {
+      "alt": "Shipping cartons stored on an industrial shelf",
+      "source": "Tima Miroshnichenko, Pexels",
+      "url": "https://www.pexels.com/photo/brown-cardboard-boxes-on-a-steel-shelf-6169022/",
+      "license": "Pexels License"
+    },
+    "eco-packaging.jpg": {
+      "alt": "Stacked paper packaging boxes in an eco-friendly presentation",
+      "source": "Pexels",
+      "url": "https://www.pexels.com/photo/stack-of-eco-friendly-packaging-boxes-31438304/",
+      "license": "Pexels License"
+    }
+  }
+}
