@@ -6,7 +6,7 @@
       "name": "Standard Corrugated Boxes",
       "slug": "standard-corrugated-boxes",
       "description": "Everyday corrugated box styles engineered to suit product shape, packing operations and distribution conditions.",
-      "photos": ["mailer-cartons.jpg", "corrugated-board.jpg", "ecommerce-boxes.jpg", "stacked-cardboard.jpg"],
+      "photos": ["cardboard-boxes.jpg", "corrugated-board.jpg", "ecommerce-boxes.jpg", "stacked-cardboard.jpg"],
       "products": [
         "Regular Slotted Containers (RSC)",
         "Half Slotted Containers (HSC)",
@@ -56,7 +56,7 @@
       "name": "Printed Corrugated Boxes",
       "slug": "printed-corrugated-boxes",
       "description": "Corrugated packaging with artwork and information suited to your brand, warehouse and retail workflow.",
-      "photos": ["paper-cartons.jpg", "mailer-cartons.jpg", "corrugated-board.jpg", "packaging-factory.jpg"],
+      "photos": ["paper-cartons.jpg", "cardboard-boxes.jpg", "corrugated-board.jpg", "packaging-factory.jpg"],
       "products": [
         "Flexographic Printed Boxes",
         "Offset Printed Boxes",
@@ -70,7 +70,7 @@
       "name": "Custom Corrugated Boxes",
       "slug": "custom-corrugated-boxes",
       "description": "Made-to-requirement box solutions designed around product dimensions, packing methods and distribution.",
-      "photos": ["mailer-cartons.jpg", "ecommerce-boxes.jpg", "warehouse-cartons.jpg", "packaging-factory.jpg"],
+      "photos": ["cardboard-boxes.jpg", "ecommerce-boxes.jpg", "warehouse-cartons.jpg", "packaging-factory.jpg"],
       "products": [
         "Custom Size Boxes",
         "Heavy Duty Boxes",
@@ -97,7 +97,7 @@
       "name": "Corrugated Partitions & Inserts",
       "slug": "corrugated-partitions-inserts",
       "description": "Internal corrugated components that help separate, locate and protect products inside an outer carton.",
-      "photos": ["cardboard-insert.jpg", "corrugated-board.jpg", "mailer-cartons.jpg"],
+      "photos": ["cardboard-insert.jpg", "corrugated-board.jpg", "cardboard-boxes.jpg"],
       "products": [
         "Corrugated Partitions",
         "Corrugated Dividers",
@@ -110,9 +110,12 @@
       "name": "Retail & Display Packaging",
       "slug": "retail-display-packaging",
       "description": "Packaging formats that support efficient shelf replenishment and clear product presentation.",
-      "photos": ["paper-cartons.jpg", "mailer-cartons.jpg", "eco-packaging.jpg"],
+      "photos": ["paper-cartons.jpg", "eco-packaging.jpg", "cardboard-boxes.jpg", "ecommerce-boxes.jpg"],
       "products": [
-        "Shelf Ready Packaging"
+        "Shelf Ready Packaging",
+        "Retail Display Boxes",
+        "Counter Display Units",
+        "Promotional Display Boxes"
       ]
     },
     {
@@ -138,11 +141,12 @@
       "name": "Sustainable Packaging",
       "slug": "sustainable-packaging",
       "description": "Paper-based packaging choices designed to support recyclable material streams and practical reuse.",
-      "photos": ["eco-packaging.jpg", "stacked-cardboard.jpg", "corrugated-board.jpg"],
+      "photos": ["eco-packaging.jpg", "stacked-cardboard.jpg", "corrugated-board.jpg", "cardboard-boxes.jpg"],
       "products": [
         "Eco-Friendly Boxes",
         "Recyclable Packaging",
-        "Sustainable Paper Packaging"
+        "Sustainable Paper Packaging",
+        "Plastic Replacement Packaging"
       ]
     }
   ],
@@ -177,10 +181,10 @@
       "url": "https://www.pexels.com/photo/workers-packaging-goods-in-a-factory-setting-39351270/",
       "license": "Pexels License"
     },
-    "mailer-cartons.jpg": {
-      "alt": "Open and closed cardboard packaging boxes on a clean background",
-      "source": "Mediamodifier, Pexels",
-      "url": "https://www.pexels.com/photo/brown-cardboard-boxes-on-white-surface-8066709/",
+    "cardboard-boxes.jpg": {
+      "alt": "Plain cardboard boxes arranged on a window sill in natural light",
+      "source": "RDNE Stock project, Pexels",
+      "url": "https://www.pexels.com/photo/boxes-balanced-on-metal-railing-7309202/",
       "license": "Pexels License"
     },
     "pharma-carton.jpg": {

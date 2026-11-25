@@ -33,11 +33,14 @@
   .logo-img{ height:42px; width:auto; display:block; }
   .logo-wrap{ display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-decoration:none; }
   .logo-name{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:0.04em; color:var(--navy); text-transform:uppercase; white-space:nowrap; }
+  .mobile-menu-toggle{ display:none; align-items:center; gap:9px; border:1px solid var(--line); background:#fff; color:var(--navy); padding:10px 12px; font:700 13px 'Inter',sans-serif; cursor:pointer; }
+  .menu-icon{ display:grid; gap:4px; width:18px; }
+  .menu-icon i{ display:block; height:2px; background:currentColor; }
   ul.links{ display:flex; gap:24px; font-size:14px; font-weight:600; align-items:center; }
   ul.links > li{ position:relative; list-style:none; }
   ul.links a, .navlink{ color:var(--text-soft); cursor:pointer; padding:6px 0; display:inline-block; }
   ul.links a:hover, .navlink:hover{ color:var(--blue); }
-  @media (max-width:1000px){ ul.links{ display:none; } }
+  @media (max-width:1000px){ ul.links{ display:none; } .mobile-menu-toggle{ display:inline-flex; } }
   .nav-cta{ background:var(--blue); color:#fff; padding:10px 18px; font-weight:700; font-size:13.5px; white-space:nowrap; }
 
   .mega{ position:fixed; top:132px; left:50%; transform:translateX(-50%); width:min(1180px,calc(100vw - 32px)); max-height:82vh; overflow:auto; background:#fff; border:1px solid var(--line); box-shadow:0 24px 60px rgba(10,46,77,0.18); padding:24px; display:none; grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px; z-index:90; }
@@ -51,6 +54,32 @@
   .mega-group > a:hover{ color:var(--blue); text-decoration:underline; }
   @media (max-width:760px){ .mega{ position:fixed; top:112px; left:16px; right:16px; transform:none; width:auto; max-height:calc(100vh - 128px); grid-template-columns:repeat(2,minmax(0,1fr)); padding:16px; gap:12px; } }
   @media (max-width:420px){ .mega{ grid-template-columns:1fr; overflow:auto; } .mega-column{ display:grid; grid-template-columns:1fr 1fr; gap:12px; } .mega-group + .mega-group{ border-top:0; border-left:1px solid var(--line); margin:0; padding:0 0 0 12px; } }
+  @media (max-width:1000px){
+    .nav-row{ flex-wrap:wrap; gap:12px; padding:12px 20px; }
+    .nav-row .logo-wrap{ margin-right:auto; }
+    .nav-row .nav-cta{ order:2; }
+    .mobile-menu-toggle{ order:1; }
+    ul.links{ order:3; width:100%; flex-direction:column; align-items:stretch; gap:0; max-height:calc(100vh - 150px); max-height:calc(100dvh - 150px); overflow:auto; padding:10px 14px; background:#fff; border:1px solid var(--line); box-shadow:0 16px 36px rgba(10,46,77,.12); }
+    .nav-row.menu-open ul.links{ display:flex; }
+    ul.links > li:not(.has-mega){ border-bottom:1px solid var(--line); }
+    ul.links > li:not(.has-mega) > a,.navlink{ display:block; padding:11px 0; }
+    li.has-mega{ display:block; }
+    .mega,li.has-mega:hover .mega,li.has-mega:focus-within .mega{ position:static; display:grid; transform:none; width:100%; max-height:none; overflow:visible; grid-template-columns:repeat(2,minmax(0,1fr)); padding:10px 0 0; gap:12px; border:0; border-top:1px solid var(--line); box-shadow:none; }
+    .mega-column{ min-width:0; }
+    .mega-group + .mega-group{ border-top:1px solid var(--line); margin-top:12px; padding-top:10px; }
+    .mega-group > a{ padding:6px 0; font-size:13px; }
+  }
+  @media (max-width:520px){
+    .nav-row{ padding:10px 14px; gap:8px; }
+    .logo-img{ height:36px; }
+    .logo-name{ font-size:10px; }
+    .nav-row .nav-cta{ padding:9px 11px; font-size:12px; }
+    ul.links{ max-height:calc(100vh - 132px); max-height:calc(100dvh - 132px); }
+    .mega{ grid-template-columns:1fr !important; }
+    .mega-group h3{ font-size:13px; }
+    .mega-group p{ font-size:12px; }
+    .mega-group > a{ padding:7px 0; font-size:14px; }
+  }
 
   .hero{ background:radial-gradient(ellipse 900px 500px at 85% -10%, rgba(79,180,240,0.28), transparent 60%), var(--navy); color:#fff; padding:64px 0 0; }
   .hero-layout{ display:grid; grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr); align-items:center; gap:36px; }
@@ -93,7 +122,7 @@
   .about-grid p{ color:var(--text-soft); margin-bottom:14px; font-size:15.5px; }
   .why-list{ list-style:none; }
   .why-list li{ display:flex; gap:10px; padding:9px 0; font-size:14.5px; color:var(--text); border-bottom:1px solid var(--line); }
-  .why-list li::before{ content:"âœ“"; color:var(--blue); font-weight:700; }
+  .why-list li::before{ content:"\2713"; color:var(--blue); font-weight:700; }
 
   .products-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
   @media (max-width:900px){ .products-grid{ grid-template-columns:1fr 1fr; } }
@@ -178,12 +207,13 @@
   .mega-icon{display:inline-flex;vertical-align:middle;margin-right:6px;color:var(--blue);}
   .mega-icon svg{width:15px;height:15px;}
 </style>
+<link rel="stylesheet" href="styles/site-theme.css?v=6">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-row">
-    <span><a href="tel:+919428526059">+91 94285 26059</a> &nbsp;Â·&nbsp; <a href="mailto:nilkanthpackaging09@gmail.com">nilkanthpackaging09@gmail.com</a></span>
+    <span><a href="tel:+919428526059">+91 94285 26059</a> &nbsp;&middot;&nbsp; <a href="mailto:nilkanthpackaging09@gmail.com">nilkanthpackaging09@gmail.com</a></span>
     <span><a href="https://wa.me/919428526059?text=Hello%20Nilkanth%20Packaging%20Industry%2C%20I%20have%20a%20packaging%20enquiry." target="_blank" rel="noopener">WhatsApp Us</a></span>
   </div>
 </div>
@@ -193,14 +223,19 @@
   <div class="nav-row">
     <a href="#top" class="logo-wrap">
       <img src="images/nilkanth-logo.png" alt="Nilkanth Packaging Industry" class="logo-img">
-      <span class="logo-name">Nilkanth Packaging Industries</span>
+      <span class="logo-copy"><span class="logo-name">Nilkanth Packaging Industries</span>
+        <span class="logo-tagline">Corrugated Packaging &middot; Vapi, Gujarat</span></span>
     </a>
-    <ul class="links">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+      <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Menu</span>
+    </button>
+    <ul class="links" id="site-navigation">
       <li><a href="#home">Home</a></li>
       <li><a href="#why">Why Us</a></li>
       <li class="has-mega">
-        <a class="navlink" href="products/index.html">Products &#9662;</a>
-        <div class="mega"><div class="mega-column"><section class="mega-group"><h3><a href="products/index.html#standard-corrugated-boxes">Standard Corrugated Boxes</a></h3><p>Everyday corrugated box styles engineered to suit product shape, packing operations and distribution conditions.</p><a href="products/regular-slotted-containers-rsc/">Regular Slotted Containers (RSC)</a><a href="products/half-slotted-containers-hsc/">Half Slotted Containers (HSC)</a><a href="products/full-overlap-slotted-boxes-fol/">Full Overlap Slotted Boxes (FOL)</a><a href="products/full-telescope-boxes-ftb/">Full Telescope Boxes (FTB)</a><a href="products/half-telescope-boxes-htb/">Half Telescope Boxes (HTB)</a><a href="products/five-panel-folder-boxes-fpf/">Five Panel Folder Boxes (FPF)</a><a href="products/one-piece-folder-boxes-opf/">One Piece Folder Boxes (OPF)</a><a href="products/self-locking-boxes/">Self-Locking Boxes</a><a href="products/die-cut-boxes/">Die-Cut Boxes</a><a href="products/mailer-boxes/">Mailer Boxes</a><a href="products/shipping-boxes/">Shipping Boxes</a><a href="products/export-boxes/">Export Boxes</a></section><section class="mega-group"><h3><a href="products/index.html#corrugated-boxes-by-ply">Corrugated Boxes by Ply</a></h3><p>Select board construction to match the required compression strength, product weight and transit route.</p><a href="products/3-ply-corrugated-boxes/">3 Ply Corrugated Boxes</a><a href="products/5-ply-corrugated-boxes/">5 Ply Corrugated Boxes</a><a href="products/7-ply-corrugated-boxes/">7 Ply Corrugated Boxes</a><a href="products/9-ply-corrugated-boxes/">9 Ply Corrugated Boxes</a><a href="products/11-ply-boxes/">11 Ply Boxes</a></section></div><div class="mega-column"><section class="mega-group"><h3><a href="products/index.html#corrugated-boxes-by-flute-type">Corrugated Boxes by Flute Type</a></h3><p>Choose a flute profile and wall build according to cushioning, stacking, print and handling needs.</p><a href="products/a-flute-boxes/">A Flute Boxes</a><a href="products/b-flute-boxes/">B Flute Boxes</a><a href="products/c-flute-boxes/">C Flute Boxes</a><a href="products/e-flute-boxes/">E Flute Boxes</a><a href="products/f-flute-boxes/">F Flute Boxes</a><a href="products/bc-flute-boxes/">BC Flute Boxes</a><a href="products/eb-flute-boxes/">EB Flute Boxes</a><a href="products/double-wall-boxes/">Double Wall Boxes</a><a href="products/triple-wall-boxes/">Triple Wall Boxes</a></section><section class="mega-group"><h3><a href="products/index.html#printed-corrugated-boxes">Printed Corrugated Boxes</a></h3><p>Corrugated packaging with artwork and information suited to your brand, warehouse and retail workflow.</p><a href="products/flexographic-printed-boxes/">Flexographic Printed Boxes</a><a href="products/offset-printed-boxes/">Offset Printed Boxes</a><a href="products/multi-colour-printed-boxes/">Multi-Colour Printed Boxes</a><a href="products/logo-printed-boxes/">Logo Printed Boxes</a><a href="products/barcode-printed-boxes/">Barcode Printed Boxes</a><a href="products/qr-code-printed-boxes/">QR Code Printed Boxes</a></section></div><div class="mega-column"><section class="mega-group"><h3><a href="products/index.html#custom-corrugated-boxes">Custom Corrugated Boxes</a></h3><p>Made-to-requirement box solutions designed around product dimensions, packing methods and distribution.</p><a href="products/custom-size-boxes/">Custom Size Boxes</a><a href="products/heavy-duty-boxes/">Heavy Duty Boxes</a><a href="products/plain-corrugated-boxes/">Plain Corrugated Boxes</a><a href="products/printed-boxes-1/">Printed Boxes-1</a><a href="products/export-packaging-boxes/">Export Packaging Boxes</a><a href="products/industrial-packaging/">Industrial Packaging</a></section><section class="mega-group"><h3><a href="products/index.html#corrugated-sheets">Corrugated Sheets</a></h3><p>Corrugated board sheets and rolls for converting, interleaving, wrapping and protective packaging.</p><a href="products/2-ply-sheets/">2 Ply Sheets</a><a href="products/3-ply-sheets/">3 Ply Sheets</a><a href="products/5-ply-sheets/">5 Ply Sheets</a><a href="products/7-ply-sheets/">7 Ply Sheets</a><a href="products/single-face-rolls/">Single Face Rolls</a></section></div><div class="mega-column"><section class="mega-group"><h3><a href="products/index.html#corrugated-partitions-inserts">Corrugated Partitions &amp; Inserts</a></h3><p>Internal corrugated components that help separate, locate and protect products inside an outer carton.</p><a href="products/corrugated-partitions/">Corrugated Partitions</a><a href="products/corrugated-dividers/">Corrugated Dividers</a><a href="products/corrugated-inserts/">Corrugated Inserts</a><a href="products/bottle-partitions/">Bottle Partitions</a><a href="products/protective-inserts/">Protective Inserts</a></section><section class="mega-group"><h3><a href="products/index.html#retail-display-packaging">Retail &amp; Display Packaging</a></h3><p>Packaging formats that support efficient shelf replenishment and clear product presentation.</p><a href="products/shelf-ready-packaging/">Shelf Ready Packaging</a></section></div><div class="mega-column"><section class="mega-group"><h3><a href="products/index.html#industry-specific-packaging">Industry-Specific Packaging</a></h3><p>Packaging options tailored to the handling, storage and delivery needs of different industries.</p><a href="products/pharmaceutical-packaging/">Pharmaceutical Packaging</a><a href="products/fmcg-packaging-boxes/">FMCG Packaging Boxes</a><a href="products/textile-packaging/">Textile Packaging</a><a href="products/engineering-packaging/">Engineering Packaging</a><a href="products/food-and-beverage-packaging/">Food &amp; Beverage Packaging</a><a href="products/chemical-packaging/">Chemical Packaging</a><a href="products/electronics-packaging/">Electronics Packaging</a><a href="products/automotive-packaging/">Automotive Packaging</a><a href="products/ceramic-packaging/">Ceramic Packaging</a><a href="products/glass-packaging-boxes/">Glass Packaging Boxes</a><a href="products/e-commerce-packaging/">E-commerce Packaging</a></section><section class="mega-group"><h3><a href="products/index.html#sustainable-packaging">Sustainable Packaging</a></h3><p>Paper-based packaging choices designed to support recyclable material streams and practical reuse.</p><a href="products/eco-friendly-boxes/">Eco-Friendly Boxes</a><a href="products/recyclable-packaging/">Recyclable Packaging</a><a href="products/sustainable-paper-packaging/">Sustainable Paper Packaging</a></section></div></div>
+        <button class="navlink products-toggle" type="button" aria-expanded="false" aria-controls="product-mega-menu">Products &#9662;</button>
+        <div class="mega" id="product-mega-menu" aria-label="Product categories"><a class="mega-catalog-link" href="products/index.html"><span>Browse the complete product catalogue</span><span>All 67 products &rarr;</span></a><div class="mega-column"><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5zM3 8v9l9 5 9-5V8M12 13v9"/></svg></span><a href="products/index.html#standard-corrugated-boxes">Standard Corrugated Boxes</a></h3><p>Everyday corrugated box styles engineered to suit product shape, packing operations and distribution conditions.</p><a href="products/regular-slotted-containers-rsc/">Regular Slotted Containers (RSC)</a><a href="products/half-slotted-containers-hsc/">Half Slotted Containers (HSC)</a><a href="products/full-overlap-slotted-boxes-fol/">Full Overlap Slotted Boxes (FOL)</a><a href="products/full-telescope-boxes-ftb/">Full Telescope Boxes (FTB)</a><a href="products/half-telescope-boxes-htb/">Half Telescope Boxes (HTB)</a><a href="products/five-panel-folder-boxes-fpf/">Five Panel Folder Boxes (FPF)</a><a href="products/one-piece-folder-boxes-opf/">One Piece Folder Boxes (OPF)</a><a href="products/self-locking-boxes/">Self-Locking Boxes</a><a href="products/die-cut-boxes/">Die-Cut Boxes</a><a href="products/mailer-boxes/">Mailer Boxes</a><a href="products/shipping-boxes/">Shipping Boxes</a><a href="products/export-boxes/">Export Boxes</a></section><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5zM3 8v9l9 5 9-5V8M12 13v9M7 6l10 5"/></svg></span><a href="products/index.html#corrugated-boxes-by-ply">Corrugated Boxes by Ply</a></h3><p>Select board construction to match the required compression strength, product weight and transit route.</p><a href="products/3-ply-corrugated-boxes/">3 Ply Corrugated Boxes</a><a href="products/5-ply-corrugated-boxes/">5 Ply Corrugated Boxes</a><a href="products/7-ply-corrugated-boxes/">7 Ply Corrugated Boxes</a><a href="products/9-ply-corrugated-boxes/">9 Ply Corrugated Boxes</a><a href="products/11-ply-boxes/">11 Ply Boxes</a></section></div><div class="mega-column"><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7c3-5 6 5 9 0s6 5 9 0M3 12c3-5 6 5 9 0s6 5 9 0M3 17c3-5 6 5 9 0s6 5 9 0"/></svg></span><a href="products/index.html#corrugated-boxes-by-flute-type">Corrugated Boxes by Flute Type</a></h3><p>Choose a flute profile and wall build according to cushioning, stacking, print and handling needs.</p><a href="products/a-flute-boxes/">A Flute Boxes</a><a href="products/b-flute-boxes/">B Flute Boxes</a><a href="products/c-flute-boxes/">C Flute Boxes</a><a href="products/e-flute-boxes/">E Flute Boxes</a><a href="products/f-flute-boxes/">F Flute Boxes</a><a href="products/bc-flute-boxes/">BC Flute Boxes</a><a href="products/eb-flute-boxes/">EB Flute Boxes</a><a href="products/double-wall-boxes/">Double Wall Boxes</a><a href="products/triple-wall-boxes/">Triple Wall Boxes</a></section><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/></svg></span><a href="products/index.html#printed-corrugated-boxes">Printed Corrugated Boxes</a></h3><p>Corrugated packaging with artwork and information suited to your brand, warehouse and retail workflow.</p><a href="products/flexographic-printed-boxes/">Flexographic Printed Boxes</a><a href="products/offset-printed-boxes/">Offset Printed Boxes</a><a href="products/multi-colour-printed-boxes/">Multi-Colour Printed Boxes</a><a href="products/logo-printed-boxes/">Logo Printed Boxes</a><a href="products/barcode-printed-boxes/">Barcode Printed Boxes</a><a href="products/qr-code-printed-boxes/">QR Code Printed Boxes</a></section></div><div class="mega-column"><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 5 16-2-2 16-15 2zM7 17l10-10"/></svg></span><a href="products/index.html#custom-corrugated-boxes">Custom Corrugated Boxes</a></h3><p>Made-to-requirement box solutions designed around product dimensions, packing methods and distribution.</p><a href="products/custom-size-boxes/">Custom Size Boxes</a><a href="products/heavy-duty-boxes/">Heavy Duty Boxes</a><a href="products/plain-corrugated-boxes/">Plain Corrugated Boxes</a><a href="products/printed-boxes-1/">Printed Boxes-1</a><a href="products/export-packaging-boxes/">Export Packaging Boxes</a><a href="products/industrial-packaging/">Industrial Packaging</a></section><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/></svg></span><a href="products/index.html#corrugated-sheets">Corrugated Sheets</a></h3><p>Corrugated board sheets and rolls for converting, interleaving, wrapping and protective packaging.</p><a href="products/2-ply-sheets/">2 Ply Sheets</a><a href="products/3-ply-sheets/">3 Ply Sheets</a><a href="products/5-ply-sheets/">5 Ply Sheets</a><a href="products/7-ply-sheets/">7 Ply Sheets</a><a href="products/single-face-rolls/">Single Face Rolls</a></section></div><div class="mega-column"><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v16H3zM12 4v16M3 12h18"/></svg></span><a href="products/index.html#corrugated-partitions-inserts">Corrugated Partitions &amp; Inserts</a></h3><p>Internal corrugated components that help separate, locate and protect products inside an outer carton.</p><a href="products/corrugated-partitions/">Corrugated Partitions</a><a href="products/corrugated-dividers/">Corrugated Dividers</a><a href="products/corrugated-inserts/">Corrugated Inserts</a><a href="products/bottle-partitions/">Bottle Partitions</a><a href="products/protective-inserts/">Protective Inserts</a></section><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18v10H3zM2 10l10-7 10 7M8 20v-6h8v6"/></svg></span><a href="products/index.html#retail-display-packaging">Retail &amp; Display Packaging</a></h3><p>Packaging formats that support efficient shelf replenishment and clear product presentation.</p><a href="products/shelf-ready-packaging/">Shelf Ready Packaging</a><a href="products/retail-display-boxes/">Retail Display Boxes</a><a href="products/counter-display-units/">Counter Display Units</a><a href="products/promotional-display-boxes/">Promotional Display Boxes</a></section></div><div class="mega-column"><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 3V8l6 4V5h6v16zM17 8h1"/></svg></span><a href="products/index.html#industry-specific-packaging">Industry-Specific Packaging</a></h3><p>Packaging options tailored to the handling, storage and delivery needs of different industries.</p><a href="products/pharmaceutical-packaging/">Pharmaceutical Packaging</a><a href="products/fmcg-packaging-boxes/">FMCG Packaging Boxes</a><a href="products/textile-packaging/">Textile Packaging</a><a href="products/engineering-packaging/">Engineering Packaging</a><a href="products/food-and-beverage-packaging/">Food &amp; Beverage Packaging</a><a href="products/chemical-packaging/">Chemical Packaging</a><a href="products/electronics-packaging/">Electronics Packaging</a><a href="products/automotive-packaging/">Automotive Packaging</a><a href="products/ceramic-packaging/">Ceramic Packaging</a><a href="products/glass-packaging-boxes/">Glass Packaging Boxes</a><a href="products/e-commerce-packaging/">E-commerce Packaging</a></section><section class="mega-group"><h3><span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4C10 4 5 8 5 14a6 6 0 0 0 6 6c6 0 9-6 9-16ZM4 21c3-5 7-8 12-11"/></svg></span><a href="products/index.html#sustainable-packaging">Sustainable Packaging</a></h3><p>Paper-based packaging choices designed to support recyclable material streams and practical reuse.</p><a href="products/eco-friendly-boxes/">Eco-Friendly Boxes</a><a href="products/recyclable-packaging/">Recyclable Packaging</a><a href="products/sustainable-paper-packaging/">Sustainable Paper Packaging</a><a href="products/plastic-replacement-packaging/">Plastic Replacement Packaging</a></section></div></div>
       </li>
       <li><a href="#industries">Industries</a></li>
       <li><a href="#process">How It Works</a></li>
@@ -217,7 +252,7 @@
     <div class="hero-copy">
     <div class="hero-top">MANUFACTURER &middot; VAPI, GUJARAT &middot; ESTD. 2022 &middot; MSME REGISTERED</div>
     <h1>Corrugated box manufacturer delivering packaging that protects, on schedule.</h1>
-    <p class="lede">Nilkanth Packaging Industry manufactures corrugated boxes, mono cartons and offset-printed packaging under one roof â€” built for pharma, FMCG, industrial and e-commerce loads.</p>
+    <p class="lede">Nilkanth Packaging Industry manufactures corrugated boxes, mono cartons and offset-printed packaging under one roof &mdash; built for pharma, FMCG, industrial and e-commerce loads.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="tel:+919428526059">Call Us</a>
       <a class="btn btn-ghost" href="#contact">Request a Quote</a>
@@ -229,12 +264,12 @@
       <span>Same-Day Quotes</span>
     </div>
     </div>
-    <img class="hero-photo" src="images/products/warehouse-cartons.jpg" alt="Corrugated cardboard boxes stacked in a warehouse">
+    <img class="hero-photo" src="images/products/cardboard-boxes.jpg" alt="Plain cardboard boxes arranged on a window sill in natural light">
   </div>
   <div class="marquee-wrap">
     <div class="marquee" id="marqueeTrack">
-      <span>3 Ply Boxes â—† 5 Ply Boxes â—† 7 Ply Boxes â—† Die-Cut Boxes â—† Mono Cartons â—† Offset Printed Cartons â—† Custom Size Boxes â—† Industrial Packaging â—† Pharma Packaging â—† E-commerce Mailers â—†</span>
-      <span>3 Ply Boxes â—† 5 Ply Boxes â—† 7 Ply Boxes â—† Die-Cut Boxes â—† Mono Cartons â—† Offset Printed Cartons â—† Custom Size Boxes â—† Industrial Packaging â—† Pharma Packaging â—† E-commerce Mailers â—†</span>
+      <span>3 Ply Boxes &middot; 5 Ply Boxes &middot; 7 Ply Boxes &middot; Die-Cut Boxes &middot; Mono Cartons &middot; Offset Printed Cartons &middot; Custom Size Boxes &middot; Industrial Packaging &middot; Pharma Packaging &middot; E-commerce Mailers</span>
+      <span>3 Ply Boxes &middot; 5 Ply Boxes &middot; 7 Ply Boxes &middot; Die-Cut Boxes &middot; Mono Cartons &middot; Offset Printed Cartons &middot; Custom Size Boxes &middot; Industrial Packaging &middot; Pharma Packaging &middot; E-commerce Mailers</span>
     </div>
   </div>
 </section>
@@ -258,7 +293,7 @@
     <div>
       <div class="kicker">Our Story</div>
       <h2 style="margin-bottom:18px;">A packaging manufacturer built around one roof, one standard.</h2>
-      <p>Founded in 2022, Nilkanth Packaging Industry manufactures corrugated boxes, mono cartons and offset-printed packaging across two manufacturing units at Damanganga Industrial Park, Vapi. Keeping corrugation, die-cutting, printing and finishing under our own roof means every carton that leaves the plant has passed through hands we control directly â€” not a chain of subcontractors.</p>
+      <p>Founded in 2022, Nilkanth Packaging Industry manufactures corrugated boxes, mono cartons and offset-printed packaging across two manufacturing units at Damanganga Industrial Park, Vapi. Keeping corrugation, die-cutting, printing and finishing under our own roof means every carton that leaves the plant has passed through hands we control directly &mdash; not a chain of subcontractors.</p>
       <p>We are an MSME-registered manufacturer working with pharmaceutical, FMCG, e-commerce and industrial clients who need packaging specified correctly the first time: the right ply, the right flute, the right finish for the load it has to survive.</p>
       <a class="btn btn-primary" href="tel:+919428526059" style="margin-top:8px; display:inline-block;">Talk to Krish</a>
     </div>
@@ -282,9 +317,9 @@
     <div class="section-head">
       <div class="kicker">Our Products</div>
       <h2>Corrugated packaging for every product and every load.</h2>
-      <p>From 3 ply shipping cartons to multi-colour printed retail boxes â€” manufactured and quality-checked under one roof in Vapi.</p>
+      <p>From 3 ply shipping cartons to multi-colour printed retail boxes &mdash; manufactured and quality-checked under one roof in Vapi.</p>
     </div>
-    <a class="btn btn-primary" href="products/index.html" style="margin-top:18px;">Browse all 63 products</a>
+    <a class="btn btn-primary" href="products/index.html" style="margin-top:18px;">Browse all 67 products</a>
     <div class="products-grid">
       <div class="product-card">
         <img class="product-real-image" src="images/products/corrugated-board.jpg" alt="Photograph of corrugated board with the fluted layers visible">
@@ -308,7 +343,7 @@
         <div class="p-actions"><a class="p-link" href="products/7-ply-corrugated-boxes/">Details</a><a class="p-quote" href="tel:+919428526059">Get Quote</a></div>
       </div>
       <div class="product-card">
-        <img class="product-real-image" src="images/products/mailer-cartons.jpg" alt="Open and closed cardboard cartons on a clean studio background">
+        <img class="product-real-image" src="images/products/cardboard-boxes.jpg" alt="Plain cardboard boxes arranged on a window sill in natural light">
         <div class="p-cat">Printed Packaging</div>
         <h3>Printed Corrugated Boxes</h3>
         <p>In-house offset printing puts your branding straight onto any ply of box, with consistent colour and registration across every batch.</p>
@@ -362,8 +397,8 @@
     <div class="why-grid2">
       <div class="why-card"><h3>Quality-Focused Production</h3><p>Every batch is checked before dispatch, not after a complaint reaches us.</p></div>
       <div class="why-card"><h3>Reliable, Timely Delivery</h3><p>Production schedules built around the dates you actually need, not just what's convenient for us.</p></div>
-      <div class="why-card"><h3>In-House, All Stages</h3><p>Corrugation, die-cutting and offset printing under our own roof â€” no outsourced steps.</p></div>
-      <div class="why-card"><h3>Direct Manufacturer Pricing</h3><p>No trader markup â€” you deal directly with the plant that makes your boxes.</p></div>
+      <div class="why-card"><h3>In-House, All Stages</h3><p>Corrugation, die-cutting and offset printing under our own roof &mdash; no outsourced steps.</p></div>
+      <div class="why-card"><h3>Direct Manufacturer Pricing</h3><p>No trader markup &mdash; you deal directly with the plant that makes your boxes.</p></div>
       <div class="why-card"><h3>One-Stop Packaging Partner</h3><p>Corrugated boxes, mono cartons and printing from a single accountable supplier.</p></div>
       <div class="why-card"><h3>Built Around Your Product</h3><p>Sizes, ply and finish specified for your product and its journey, not a generic catalog size.</p></div>
     </div>
@@ -394,7 +429,7 @@
     <div class="section-head">
       <div class="kicker">How It Works</div>
       <h2>From requirement to dispatch, in one controlled process.</h2>
-      <p>Every order follows the same route through our plant â€” so the box you approve is the box that ships.</p>
+      <p>Every order follows the same route through our plant &mdash; so the box you approve is the box that ships.</p>
     </div>
     <div class="process-grid">
       <div class="process-step"><div class="num">01</div><h4>Requirement</h4><p>We understand your product size, weight and handling needs.</p></div>
@@ -421,7 +456,7 @@
         <div class="who">Purchase Manager</div><div class="role">FMCG brand, Gujarat</div>
       </div>
       <div class="testi-card">
-        <p>"Their in-house printing meant our branding looked consistent across every batch â€” something our previous vendor struggled with."</p>
+        <p>"Their in-house printing meant our branding looked consistent across every batch &mdash; something our previous vendor struggled with."</p>
         <div class="who">Operations Lead</div><div class="role">E-commerce seller, Mumbai</div>
       </div>
       <div class="testi-card">
@@ -429,7 +464,7 @@
         <div class="who">Plant Manager</div><div class="role">Industrial manufacturer, Vapi</div>
       </div>
     </div>
-    <p class="testi-note">Sample quotes shown as placeholders â€” swap in real client testimonials once available.</p>
+    <p class="testi-note">Sample quotes shown as placeholders &mdash; swap in real client testimonials once available.</p>
   </div>
 </section>
 
@@ -472,7 +507,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Can you manufacture custom-size boxes for our product?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes â€” share your product's length, width, height and weight and we'll recommend the right size, ply and finish.</div>
+        <div class="faq-a">Yes &mdash; share your product's length, width, height and weight and we'll recommend the right size, ply and finish.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>What is the minimum order quantity?</span><span class="faq-icon">+</span></div>
@@ -509,7 +544,7 @@
       <div class="footer-about">
         <img src="images/nilkanth-logo.png" alt="Nilkanth Packaging Industry" class="footer-logo">
         <span class="footer-logo-name">Nilkanth Packaging Industries</span>
-        <p>Corrugated box manufacturer in Vapi, Gujarat â€” in-house corrugation, printing and die-cutting under one roof.</p>
+        <p>Corrugated box manufacturer in Vapi, Gujarat &mdash; in-house corrugation, printing and die-cutting under one roof.</p>
         <div class="footer-contact">
           <div><a href="tel:+919428526059">+91 94285 26059</a></div>
           <div><a href="mailto:nilkanthpackaging09@gmail.com">nilkanthpackaging09@gmail.com</a></div>
@@ -547,6 +582,68 @@
 </footer>
 
 <script>
+  (function(){
+    var toggle = document.querySelector('.mobile-menu-toggle');
+    if(!toggle) return;
+    var menu = document.getElementById(toggle.getAttribute('aria-controls'));
+    var container = toggle.closest('.nav-row');
+    var productToggle = container.querySelector('.products-toggle');
+    var productContainer = productToggle.closest('.has-mega');
+    var suppressProductFocus = false;
+    function setProductsOpen(open){
+      productContainer.classList.toggle('menu-open', open);
+      productToggle.setAttribute('aria-expanded', String(open));
+      if(!open && document.activeElement === productToggle) productToggle.blur();
+    }
+    function setMenuOpen(open){
+      container.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if(!open) setProductsOpen(false);
+    }
+    productToggle.addEventListener('click', function(){
+      setProductsOpen(window.matchMedia('(max-width: 1000px)').matches
+        ? productToggle.getAttribute('aria-expanded') !== 'true'
+        : true);
+    });
+    productContainer.addEventListener('mouseenter', function(){
+      setProductsOpen(true);
+    });
+    productContainer.addEventListener('mouseleave', function(){
+      if(!productContainer.contains(document.activeElement)) setProductsOpen(false);
+    });
+    productContainer.addEventListener('focusin', function(){
+      if(suppressProductFocus){
+        suppressProductFocus = false;
+        return;
+      }
+      setProductsOpen(true);
+    });
+    productContainer.addEventListener('focusout', function(event){
+      if(!productContainer.contains(event.relatedTarget)) setProductsOpen(false);
+    });
+    toggle.addEventListener('click', function(){
+      setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.addEventListener('click', function(event){
+      if(event.target.closest('a')) setMenuOpen(false);
+    });
+    document.addEventListener('click', function(event){
+      if(!productContainer.contains(event.target)) setProductsOpen(false);
+    });
+    document.addEventListener('keydown', function(event){
+      if(event.key === 'Escape'){
+        if(productToggle.getAttribute('aria-expanded') === 'true'){
+          setProductsOpen(false);
+          suppressProductFocus = true;
+          productToggle.focus();
+        }else if(toggle.getAttribute('aria-expanded') === 'true'){
+          setMenuOpen(false);
+          toggle.focus();
+        }
+      }
+    });
+  })();
+
   document.querySelectorAll('.faq-q').forEach(function(q){
     q.addEventListener('click', function(){
       var item = q.parentElement;

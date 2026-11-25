@@ -13,7 +13,7 @@ CATALOG_FILE = PRODUCTS / "catalog.json"
 PHONE = "+919428526059"
 EMAIL = "nilkanthpackaging09@gmail.com"
 WHATSAPP = "919428526059"
-ACCENT = "#b63338"
+ACCENT = "#0B84D6"
 
 
 def escape(value):
@@ -95,45 +95,60 @@ def mega_menu(catalog, depth):
                 f'<p>{escape(category["description"])}</p>{links}</section>'
             )
         groups.append('<div class="mega-column">' + "".join(chunks) + "</div>")
-    return "".join(groups)
+    return (
+        f'<a class="mega-catalog-link" href="{escape("products/index.html" if depth == 0 else "../" * (depth - 1) + "index.html")}">'
+        f'<span>Browse the complete product catalogue</span><span>All {product_count(catalog)} products &rarr;</span></a>'
+        + "".join(groups)
+    )
 
 
 def header(catalog, depth):
     prefix = "../" * depth
     return f"""
-<div class="topline"><div class="shell topline-inner">
-  <span>Vapi, Gujarat, India <span class="dot">/</span> Corrugated packaging manufacturer</span>
-  <span><a href="tel:{PHONE}">+91 94285 26059</a><span class="dot">/</span><a href="mailto:{EMAIL}">{EMAIL}</a></span>
+<div class="topbar"><div class="topbar-row">
+  <span><a href="tel:{PHONE}">+91 94285 26059</a> &nbsp;&middot;&nbsp; <a href="mailto:{EMAIL}">{EMAIL}</a></span>
+  <span><a href="https://wa.me/{WHATSAPP}?text=Hello%20Nilkanth%20Packaging%20Industries%2C%20I%20have%20a%20packaging%20enquiry." target="_blank" rel="noopener">WhatsApp Us</a></span>
 </div></div>
-<header class="site-header"><div class="shell nav-inner">
-  <a class="brand" href="{prefix}index.html" aria-label="Nilkanth Packaging Industries home">
-    <img src="{prefix}images/nilkanth-logo.png" alt="Nilkanth Packaging Industries logo"><span>Packaging Industries<small>Vapi, Gujarat</small></span>
+<div class="trustbar">MSME Registered &middot; Est. 2022 &middot; 2 Manufacturing Plants &middot; Vapi, Gujarat</div>
+<header class="site-header"><div class="nav-row">
+  <a href="{prefix}index.html#home" class="logo-wrap" aria-label="Nilkanth Packaging Industries home">
+    <img src="{prefix}images/nilkanth-logo.png" alt="Nilkanth Packaging Industries" class="logo-img">
+    <span class="logo-copy"><span class="logo-name">Nilkanth Packaging Industries</span>
+      <span class="logo-tagline">Corrugated Packaging &middot; Vapi, Gujarat</span></span>
   </a>
-  <nav aria-label="Main navigation">
-    <a class="nav-link" href="{prefix}index.html">Home</a>
-    <div class="nav-products"><a class="nav-link" href="{prefix}products/index.html">Products <span aria-hidden="true">⌄</span></a>
-      <div class="mega" aria-label="Product categories">{mega_menu(catalog, depth)}</div>
-    </div>
-    <a class="nav-link" href="{prefix}index.html#why">Why Nilkanth</a>
-    <a class="nav-cta" href="{prefix}products/index.html#quote">Request a Quote</a>
-  </nav>
+  <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+    <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>Menu</span>
+  </button>
+  <ul class="links" id="site-navigation">
+    <li><a href="{prefix}index.html#home">Home</a></li>
+    <li><a href="{prefix}index.html#why">Why Us</a></li>
+    <li class="has-mega">
+      <button class="navlink products-toggle" type="button" aria-expanded="false" aria-controls="product-mega-menu">Products <span aria-hidden="true">&#9662;</span></button>
+      <div class="mega" id="product-mega-menu" aria-label="Product categories">{mega_menu(catalog, depth)}</div>
+    </li>
+    <li><a href="{prefix}index.html#industries">Industries</a></li>
+    <li><a href="{prefix}index.html#process">How It Works</a></li>
+    <li><a href="{prefix}index.html#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="tel:{PHONE}">Call Us</a>
 </div></header>"""
 
 
 def page_styles():
     return """
 <style>
-:root{{--ink:#20282d;--muted:#66727a;--line:#e4e8e9;--paper:#f5f6f5;--red:__ACCENT__;--red-dark:#8f252b;--green:#294e43;--white:#fff;--gold:#c7a86c}}
-*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;color:var(--ink);background:var(--white);font:16px/1.65 Inter,Arial,sans-serif}}a{{color:inherit;text-decoration:none}}img{{max-width:100%}}h1,h2,h3{{font-family:"Space Grotesk",Inter,Arial,sans-serif;line-height:1.13;letter-spacing:-.025em;margin:0 0 14px}}h1{{font-size:clamp(2.2rem,4vw,3.8rem)}}h2{{font-size:clamp(1.7rem,3vw,2.5rem)}}h3{{font-size:1.2rem}}p{{margin:0 0 16px}}.shell{{width:min(1200px,calc(100% - 48px));margin:auto}}.topline{{background:#20282d;color:#e2e5e6;font-size:12px}}.topline-inner{{min-height:36px;display:flex;justify-content:space-between;align-items:center;gap:12px}}.topline a:hover{{color:#fff}}.dot{{padding:0 9px;color:#859095}}.site-header{{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}}.nav-inner{{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}}.brand{{display:flex;align-items:center;gap:12px;color:#243037;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:12px;line-height:1.3}}.brand img{{width:64px;height:48px;object-fit:contain}}.brand small{{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.15em;margin-top:3px}}nav{{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}}.nav-link{{padding:12px 0}}.nav-link:hover{{color:var(--red)}}.nav-cta,.button{{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;background:var(--red);color:#fff;font-size:13px;font-weight:800;border:1px solid var(--red);transition:transform .18s,background .18s}}.nav-cta:hover,.button:hover{{background:var(--red-dark);transform:translateY(-2px)}}.nav-products{{position:relative}}.mega{{display:none;position:fixed;top:116px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100vw - 32px));max-height:82vh;overflow:auto;background:#fff;border:1px solid var(--line);box-shadow:0 24px 60px #18242a2b;padding:24px;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}}
+:root{{--ink:#1b2733;--muted:#55677a;--line:#d8e2ec;--paper:#f5f8fb;--red:__ACCENT__;--red-dark:#075fa3;--green:#294e43;--white:#fff;--gold:#c7a86c}}
+*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;color:var(--ink);background:var(--white);font:16px/1.65 Inter,Arial,sans-serif}}a{{color:inherit;text-decoration:none}}img{{max-width:100%}}h1,h2,h3{{font-family:"Space Grotesk",Inter,Arial,sans-serif;line-height:1.13;letter-spacing:-.025em;margin:0 0 14px}}h1{{font-size:clamp(2.2rem,4vw,3.8rem)}}h2{{font-size:clamp(1.7rem,3vw,2.5rem)}}h3{{font-size:1.2rem}}p{{margin:0 0 16px}}.shell{{width:min(1200px,calc(100% - 48px));margin:auto}}.topline{{background:#20282d;color:#e2e5e6;font-size:12px}}.topline-inner{{min-height:36px;display:flex;justify-content:space-between;align-items:center;gap:12px}}.topline a:hover{{color:#fff}}.dot{{padding:0 9px;color:#859095}}.site-header{{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}}.nav-inner{{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}}.brand{{display:flex;align-items:center;gap:12px;color:#243037;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:12px;line-height:1.3}}.brand img{{width:64px;height:48px;object-fit:contain}}.brand small{{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.15em;margin-top:3px}}.mobile-menu-toggle{{display:none;align-items:center;gap:9px;padding:9px 12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:700 12px Inter,Arial,sans-serif;cursor:pointer}}.menu-icon{{display:grid;gap:4px;width:18px}}.menu-icon i{{display:block;height:2px;background:currentColor}}nav{{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}}.nav-link{{padding:12px 0}}.nav-link:hover{{color:var(--red)}}.nav-cta,.button{{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;background:var(--red);color:#fff;font-size:13px;font-weight:800;border:1px solid var(--red);transition:transform .18s,background .18s}}.nav-cta:hover,.button:hover{{background:var(--red-dark);transform:translateY(-2px)}}.nav-products{{position:relative}}.mega{{display:none;position:fixed;top:116px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100vw - 32px));max-height:82vh;overflow:auto;background:#fff;border:1px solid var(--line);box-shadow:0 24px 60px #18242a2b;padding:24px;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}}
 .mega-column{{min-width:0}}.mega-group+.mega-group{{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}}.mega-group h3{{font-size:12px;color:var(--red);text-transform:uppercase;letter-spacing:.03em;margin:0 0 7px}}.mega-group h3 a{{color:var(--red)}}.mega-group p{{font-size:11px;line-height:1.45;color:var(--muted);margin:0 0 7px}}.mega-group>a{{display:block;padding:3px 0;font-size:11px;line-height:1.4;font-weight:500}}.mega-group>a:hover{{color:var(--red);text-decoration:underline}}.nav-products:hover .mega,.nav-products:focus-within .mega{{display:grid}}
 .eyebrow{{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:12px}}.crumbs{{padding:22px 0;color:var(--muted);font-size:13px}}.crumbs a:hover,.text-link:hover,.footer-links a:hover{{color:var(--red)}}.actions{{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}}.button.whatsapp{{background:#294e43;border-color:#294e43}}.button.whatsapp:hover{{background:#1d3d34}}
 .product-hero{{padding:32px 0 58px}}.product-hero-grid{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);align-items:center;gap:56px}}.product-photo{{margin:0;min-width:0;background:var(--paper)}}.product-photo img{{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}}.product-photo figcaption,.photo-credit{{padding:8px 12px;color:var(--muted);font-size:11px;line-height:1.45}}.product-photo figcaption a{{text-decoration:underline}}.product-intro,.catalog-hero p,.copy{{color:#4d5a61;font-size:16px;line-height:1.75}}.product-tags{{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}}.product-tags span{{background:#f5f6f5;border:1px solid var(--line);padding:7px 10px;font-size:11px;font-weight:700;color:#4d5a61}}
 .content-section{{padding:62px 0}}.content-section.muted{{background:var(--paper)}}.two-col{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}}.feature-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.feature{{padding:18px;background:var(--paper);border:1px solid var(--line)}}.feature strong,.feature span{{display:block}}.feature strong{{margin-bottom:7px;font-size:14px}}.feature span{{font-size:13px;line-height:1.55;color:var(--muted)}}.spec-table{{width:100%;border-collapse:collapse;margin:18px 0}}.spec-table td{{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}}.spec-table td:first-child{{width:34%;font-weight:700}}.form-note{{color:var(--muted);font-size:12px;line-height:1.5}}.why-panel{{margin-top:26px;padding:26px;background:#20282d;color:#fff}}.why-panel h2{{font-size:1.6rem}}.why-panel p,.why-panel li{{color:#d7dfe1;font-size:13px}}.why-panel ul{{margin:14px 0 0;padding-left:18px}}.why-panel li{{margin:7px 0}}.related-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}}.related-card{{display:block;border:1px solid var(--line);background:#fff;transition:transform .18s,box-shadow .18s}}.related-card:hover,.catalog-card:hover{{transform:translateY(-3px);box-shadow:0 12px 28px #18242a14}}.related-card img{{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}}.related-card span{{display:block;padding:14px;font-weight:700;font-size:14px}}
-.quote-section{{padding:68px 0;background:#f4f5f4}}.quote-grid{{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}}.quote-aside h2{{font-size:clamp(1.8rem,3vw,2.5rem)}}.quote-card{{padding:26px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 36px #18242a0d}}.form-grid{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}.field{{min-width:0}}.field.full{{grid-column:1/-1}}.field label{{display:block;font-size:12px;font-weight:700;margin-bottom:6px}}.field input,.field textarea{{width:100%;min-height:44px;padding:10px 12px;border:1px solid #cbd2d5;border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:14px}}.field textarea{{min-height:100px;resize:vertical}}.field input:focus,.field textarea:focus{{outline:2px solid #b6333844;border-color:var(--red)}}.field button{{cursor:pointer}}.field .form-note{{margin:10px 0 0}}
+.quote-section{{padding:68px 0;background:#f5f8fb}}.quote-grid{{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}}.quote-aside h2{{font-size:clamp(1.8rem,3vw,2.5rem)}}.quote-card{{padding:26px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 36px #18242a0d}}.form-grid{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}.field{{min-width:0}}.field.full{{grid-column:1/-1}}.field label{{display:block;font-size:12px;font-weight:700;margin-bottom:6px}}.field input,.field textarea{{width:100%;min-height:44px;padding:10px 12px;border:1px solid #cbd2d5;border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:14px}}.field textarea{{min-height:100px;resize:vertical}}.field input:focus,.field textarea:focus{{outline:3px solid rgba(11,132,214,.18);border-color:var(--red)}}.field button{{cursor:pointer}}.field .form-note{{margin:10px 0 0}}
 .catalog-hero{{padding:56px 0;background:#20282d;color:#fff}}.catalog-hero .eyebrow{{color:#e4b7a5}}.catalog-hero h1{{max-width:14ch;color:#fff}}.catalog-hero p{{color:#d7dfe1;max-width:62ch}}.catalog-hero-grid{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.88fr);align-items:center;gap:48px}}.catalog-hero-grid>img{{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}}.catalog-section{{padding:64px 0;border-bottom:1px solid var(--line)}}.category-heading{{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:26px}}.category-heading>p{{max-width:460px;margin:0;color:var(--muted);font-size:14px}}.catalog-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}.catalog-card{{min-width:0;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}}.catalog-card>img{{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--paper)}}.catalog-card-body{{padding:18px;display:flex;flex:1;flex-direction:column}}.catalog-card-body h3{{font-size:17px}}.catalog-card-body p{{color:var(--muted);font-size:13px;line-height:1.55;flex:1}}.text-link{{font-size:12px;font-weight:800;color:var(--red)}}.catalog-card .photo-credit{{border-top:1px solid var(--line)}}.photo-credit a{{text-decoration:underline}}.site-footer{{padding:34px 0;background:#20282d;color:#fff}}.footer-inner{{display:flex;justify-content:space-between;gap:28px;align-items:center}}.footer-inner strong{{font-size:14px}}.footer-inner p{{max-width:560px;margin:8px 0 0;color:#c5ced1;font-size:12px}}.footer-links{{display:flex;gap:18px;flex-wrap:wrap;font-size:12px}}
 @media(max-width:900px){{.nav-inner{{gap:18px}}nav{{gap:16px}}.product-hero-grid,.catalog-hero-grid{{gap:30px}}.catalog-grid{{grid-template-columns:repeat(2,minmax(0,1fr))}}.mega{{padding:16px;gap:12px}}}}
-@media(max-width:760px){{.shell{{width:min(100% - 32px,620px)}}.topline-inner{{justify-content:center;flex-wrap:wrap;padding:6px 0;text-align:center}}.nav-inner{{height:auto;min-height:72px;flex-wrap:wrap;justify-content:center;gap:8px;padding:10px 0}}.brand{{margin:0 auto}}.nav-inner nav{{width:100%;justify-content:center;gap:18px;font-size:12px}}.nav-inner nav>a.nav-link:nth-of-type(2){{display:none}}.nav-cta{{padding:9px 12px;font-size:12px}}.mega{{position:fixed;top:126px;left:12px;right:12px;transform:none;width:auto;max-height:calc(100vh - 140px);grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:12px}}.product-hero-grid,.catalog-hero-grid,.two-col,.quote-grid{{grid-template-columns:1fr;gap:28px}}.product-hero{{padding-top:18px}}.product-hero-grid>div{{order:-1}}.category-heading{{display:block}}.category-heading>p{{margin-top:12px}}.catalog-hero{{padding:38px 0}}.catalog-section,.content-section{{padding:44px 0}}.quote-section{{padding:46px 0}}.footer-inner{{align-items:flex-start;flex-direction:column}}}}
-@media(max-width:520px){{.shell{{width:calc(100% - 28px)}}.catalog-grid,.related-grid{{grid-template-columns:1fr}}.feature-grid,.form-grid{{grid-template-columns:1fr}}.field.full{{grid-column:auto}}.quote-card{{padding:18px}}.product-tags{{gap:6px}}.product-tags span{{font-size:10px;padding:6px 8px}}.actions{{gap:8px}}.actions .button{{flex:1 1 145px;padding:11px 12px;text-align:center}}.mega{{grid-template-columns:1fr;top:126px;max-height:calc(100vh - 140px)}}.mega-column{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.mega-group+.mega-group{{border-top:0;border-left:1px solid var(--line);margin:0;padding:0 0 0 12px}}}}
+@media(max-width:1000px){{.shell{{width:min(100% - 32px,620px)}}.topline-inner{{justify-content:center;flex-wrap:wrap;padding:6px 0;text-align:center}}.nav-inner{{height:auto;min-height:72px;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:10px 0}}.brand{{margin:0 auto 0 0}}.mobile-menu-toggle{{display:inline-flex;order:2}}.nav-inner nav{{display:none;width:100%;order:3;flex-direction:column;align-items:stretch;gap:8px;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow:auto;padding:12px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 36px #18242a1f}}.nav-inner.menu-open nav{{display:flex}}.nav-inner nav>a.nav-link,.nav-inner .nav-cta{{display:block;padding:10px 0}}.nav-inner .nav-cta{{text-align:center;padding:10px 12px}}.nav-products{{display:block}}.mega,.nav-products:hover .mega,.nav-products:focus-within .mega{{position:static;display:grid;transform:none;width:100%;max-height:none;overflow:visible;grid-template-columns:repeat(2,minmax(0,1fr));padding:10px 0 0;gap:12px;border:0;border-top:1px solid var(--line);box-shadow:none}}.mega-column{{min-width:0}}.mega-group+.mega-group{{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}}.mega-group>a{{padding:6px 0;font-size:13px}}.product-hero-grid,.catalog-hero-grid,.two-col,.quote-grid{{grid-template-columns:1fr;gap:28px}}.product-hero{{padding-top:18px}}.product-hero-grid>div{{order:-1}}.category-heading{{display:block}}.category-heading>p{{margin-top:12px}}.catalog-hero{{padding:38px 0}}.catalog-section,.content-section{{padding:44px 0}}.quote-section{{padding:46px 0}}.footer-inner{{align-items:flex-start;flex-direction:column}}}}
+@media(max-width:520px){{.shell{{width:calc(100% - 28px)}}.catalog-grid,.related-grid{{grid-template-columns:1fr}}.feature-grid,.form-grid{{grid-template-columns:1fr}}.field.full{{grid-column:auto}}.quote-card{{padding:18px}}.product-tags{{gap:6px}}.product-tags span{{font-size:10px;padding:6px 8px}}.actions{{gap:8px}}.actions .button{{flex:1 1 145px;padding:11px 12px;text-align:center}}.nav-inner nav{{max-height:calc(100vh - 132px);max-height:calc(100dvh - 132px)}}.mega,.mega-column{{grid-template-columns:1fr}}.mega-group h3{{font-size:13px}}.mega-group p{{font-size:12px}}.mega-group>a{{padding:7px 0;font-size:14px}}}}
 </style>""".replace("{{", "{").replace("}}", "}").replace("__ACCENT__", ACCENT) + (
         "\n<style>.mega-icon{display:inline-flex;vertical-align:middle;margin-right:6px;color:var(--red)}"
         ".mega-icon svg{width:15px;height:15px}</style>"
@@ -156,6 +171,7 @@ def head(title, description, canonical_path, structured_data=None):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 {page_styles()}
+<link rel="stylesheet" href="{"../" * canonical_path.count("/") }styles/site-theme.css?v=6">
 {structured}
 </head><body>"""
 
@@ -173,7 +189,36 @@ def products(catalog):
             yield category, product
 
 
+def product_count(catalog):
+    return sum(len(category["products"]) for category in catalog["categories"])
+
+
 def item_intro(category, product):
+    custom_intros = {
+        "Retail Display Boxes": (
+            "Retail Display Boxes are corrugated packaging formats designed to present products "
+            "in-store while supporting practical replenishment and handling. Nilkanth Packaging "
+            "Industries can discuss display dimensions, board strength and print requirements "
+            "for your retail application."
+        ),
+        "Counter Display Units": (
+            "Counter Display Units are compact corrugated point-of-sale displays planned around "
+            "the product range, available counter space and replenishment needs. Share the display "
+            "layout and product details with Nilkanth Packaging Industries for a specification-led quote."
+        ),
+        "Promotional Display Boxes": (
+            "Promotional Display Boxes combine product presentation with a corrugated pack format "
+            "for campaigns, launches and in-store promotions. Size, board construction and suitable "
+            "print options can be discussed with Nilkanth Packaging Industries in Vapi."
+        ),
+        "Plastic Replacement Packaging": (
+            "Plastic Replacement Packaging explores corrugated paper-based formats as an alternative "
+            "to selected plastic packaging applications. The right design depends on product protection, "
+            "dimensions, handling and end-use requirements."
+        ),
+    }
+    if product in custom_intros:
+        return custom_intros[product]
     lower = product.lower()
     return (
         f"{product} are specified around the product being packed, how it is handled, "
@@ -184,6 +229,31 @@ def item_intro(category, product):
 
 
 def item_detail(category, product):
+    custom_details = {
+        "Retail Display Boxes": (
+            "Display format, shelf footprint and product access are considered alongside the "
+            "required board construction. Artwork and replenishment details can be reviewed during "
+            "quotation so the proposed pack works for both store teams and customers."
+        ),
+        "Counter Display Units": (
+            "A counter unit is planned around its footprint, the number and arrangement of products, "
+            "and how staff will refill it. Share the available counter space, product dimensions and "
+            "expected load so the board and layout can be discussed before production."
+        ),
+        "Promotional Display Boxes": (
+            "Promotional packaging can be tailored to the campaign format, product assortment and "
+            "store handling conditions. Nilkanth can review dimensions, structural needs and artwork "
+            "for print feasibility before confirming a quotation."
+        ),
+        "Plastic Replacement Packaging": (
+            "For suitable applications, corrugated packaging can be considered in place of selected "
+            "plastic packs or protective components. The product’s fragility, moisture exposure, "
+            "stacking and distribution route should be reviewed to determine whether a paper-based "
+            "format is appropriate."
+        ),
+    }
+    if product in custom_details:
+        return custom_details[product]
     return (
         f"Our {product.lower()} can be developed as part of a complete secondary packaging "
         f"requirement. We review the product measurements, packed weight, orientation, "
@@ -238,6 +308,18 @@ def features(category, product):
         ("Made-to-order dimensions", "Share internal or external dimensions for a fit-for-purpose quotation."),
         ("Material and print choices", "Discuss liner, medium, flute and print requirements with the team."),
     ]
+    if product in {"Retail Display Boxes", "Counter Display Units", "Promotional Display Boxes"}:
+        items = [
+            ("Product presentation", "Plan the display format around the product range and store setting."),
+            ("Display-led dimensions", "Consider footprint, product access and replenishment requirements."),
+            ("Branding options", "Review artwork and print feasibility for your intended display use."),
+        ]
+    elif product == "Plastic Replacement Packaging":
+        items = [
+            ("Paper-based format", "Explore corrugated options for selected packaging applications."),
+            ("Protection by design", "Review product fragility, handling and distribution requirements."),
+            ("Specification review", "Confirm suitability and material requirements before production."),
+        ]
     if "print" in name or "barcode" in name or "logo" in name or "qr" in name or "fmcg" in name:
         items[2] = ("Brand and information printing", "Artwork, marks and codes can be reviewed for print feasibility.")
     if "insert" in name or "partition" in name or "divider" in name or "bottle" in name:
@@ -329,8 +411,76 @@ def quote_form(product):
 </div></section>"""
 
 
-def script():
+def mobile_menu_script():
     return """
+<script>
+var menuToggle = document.querySelector('.mobile-menu-toggle');
+if (menuToggle) {
+  var menu = document.getElementById(menuToggle.getAttribute('aria-controls'));
+  var menuContainer = menuToggle.closest('.nav-row');
+  var productToggle = menuContainer.querySelector('.products-toggle');
+  var productContainer = productToggle.closest('.has-mega');
+  var suppressProductFocus = false;
+  function setProductsOpen(open) {
+    productContainer.classList.toggle('menu-open', open);
+    productToggle.setAttribute('aria-expanded', String(open));
+    if (!open && document.activeElement === productToggle) productToggle.blur();
+  }
+  productToggle.addEventListener('click', function() {
+    var open = window.matchMedia('(max-width: 1000px)').matches
+      ? productToggle.getAttribute('aria-expanded') !== 'true'
+      : true;
+    setProductsOpen(open);
+    if (open) productToggle.focus();
+  });
+  productContainer.addEventListener('mouseenter', function() {
+    setProductsOpen(true);
+  });
+  productContainer.addEventListener('mouseleave', function() {
+    if (!productContainer.contains(document.activeElement)) setProductsOpen(false);
+  });
+  productContainer.addEventListener('focusin', function() {
+    if (suppressProductFocus) {
+      suppressProductFocus = false;
+      return;
+    }
+    setProductsOpen(true);
+  });
+  productContainer.addEventListener('focusout', function(event) {
+    if (!productContainer.contains(event.relatedTarget)) setProductsOpen(false);
+  });
+  function setMenuOpen(open) {
+    menuContainer.classList.toggle('menu-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    if (!open) setProductsOpen(false);
+  }
+  menuToggle.addEventListener('click', function() {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function(event) {
+    if (event.target.closest('a')) setMenuOpen(false);
+  });
+  document.addEventListener('click', function(event) {
+    if (!productContainer.contains(event.target)) setProductsOpen(false);
+  });
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      if (productToggle.getAttribute('aria-expanded') === 'true') {
+        setProductsOpen(false);
+        suppressProductFocus = true;
+        productToggle.focus();
+      } else if (menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    }
+  });
+}
+</script>"""
+
+
+def script():
+    return mobile_menu_script() + """
 <script>
 document.querySelectorAll('.quote-card').forEach(function(form) {
   form.addEventListener('submit', function(event) {
@@ -390,7 +540,7 @@ def catalogue_page(catalog):
             f'<h2>{escape(category["name"])}</h2></div><p>{escape(category["description"])}</p></div>'
             f'<div class="catalog-grid">{"".join(cards)}</div></div></section>'
         )
-    hero_photo = photo(catalog, "mailer-cartons.jpg")
+    hero_photo = photo(catalog, "cardboard-boxes.jpg")
     title = "Corrugated Packaging Products | Nilkanth Packaging Industries"
     html_page = head(title, intro, "products/", structured)
     html_page += header(catalog, 1)
@@ -398,7 +548,7 @@ def catalogue_page(catalog):
 <main><section class="catalog-hero"><div class="shell catalog-hero-grid">
   <div><div class="eyebrow">Product catalogue / Vapi, Gujarat</div><h1>Packaging made for the way your products move.</h1>
     <p>{escape(intro)}</p><a class="button" href="#quote">Discuss a packaging requirement</a>
-  </div><img src="../images/products/mailer-cartons.jpg" alt="{escape(hero_photo['alt'])}">
+  </div><img src="../images/products/cardboard-boxes.jpg" alt="{escape(hero_photo['alt'])}">
 </div></section>
 <div class="shell crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / Product catalogue</div>
 {"".join(sections)}
@@ -406,6 +556,7 @@ def catalogue_page(catalog):
 <div class="quote-card"><h3>Talk with our Vapi team</h3><p>For a quotation, call or email with your product and delivery details. There are no fixed catalogue prices; each quote depends on the final specification and quantity.</p><div class="actions"><a class="button" href="tel:{PHONE}">Call +91 94285 26059</a><a class="button whatsapp" href="https://wa.me/{WHATSAPP}?text=Hello%20Nilkanth%20Packaging%20Industries%2C%20I%20need%20help%20with%20a%20packaging%20specification." target="_blank" rel="noopener">WhatsApp enquiry</a></div><p class="form-note"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div></div></section></main>
 <footer class="site-footer"><div class="shell footer-inner"><div><strong>Nilkanth Packaging Industries</strong><p>Corrugated boxes and packaging solutions from Vapi, Gujarat. Product specifications and pricing are confirmed against each enquiry.</p></div><div class="footer-links"><a href="../index.html">Home</a><a href="mailto:{EMAIL}">Email us</a><a href="tel:{PHONE}">Call us</a></div></div></footer>
 </body></html>"""
+    html_page = html_page.replace("</body></html>", mobile_menu_script() + "</body></html>")
     return html_page
 
 
@@ -446,10 +597,29 @@ def product_page(catalog, category, product):
         f'<div class="feature"><strong>{escape(title)}</strong><span>{escape(description)}</span></div>'
         for title, description in features(category, product)
     )
-    uses = (
+    product_uses = {
+        "Retail Display Boxes": (
+            "Suitable applications may include retail shelves, promotional aisles and product "
+            "presentation areas where the display format can support the product weight and store handling."
+        ),
+        "Counter Display Units": (
+            "Counter units may be used for compact product presentation at checkout areas, service "
+            "counters or promotional points, subject to the product dimensions and expected load."
+        ),
+        "Promotional Display Boxes": (
+            "Promotional displays may support product launches, seasonal campaigns and in-store "
+            "presentations when the format fits the product assortment and retail environment."
+        ),
+        "Plastic Replacement Packaging": (
+            "Paper-based alternatives may be suitable for selected secondary packaging or protective "
+            "applications. Suitability depends on the product, exposure conditions and transit route."
+        ),
+    }
+    uses = product_uses.get(
+        product,
         f"{product} are used where the selected packaging format suits the product and handling conditions. "
         "Potential applications include secondary packaging, storage, picking, order fulfilment, "
-        "retail presentation or transit, depending on the exact product design."
+        "retail presentation or transit, depending on the exact product design.",
     )
     page_html += f"""
 <main><div class="shell crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> / <a href="../index.html">Products</a> / {escape(product)}</div>
@@ -477,6 +647,30 @@ def update_homepage(catalog):
     menu = mega_menu(catalog, 0)
     if "<!-- PRODUCT_MEGA_MENU -->" in page:
         page = page.replace("<!-- PRODUCT_MEGA_MENU -->", menu)
+    else:
+        opening = '<div class="mega" id="product-mega-menu" aria-label="Product categories">'
+        start = page.find(opening)
+        if start < 0:
+            raise ValueError("Homepage product mega-menu could not be updated")
+        depth = 1
+        end = None
+        for token in re.finditer(r"<div\b[^>]*>|</div>", page[start + len(opening):]):
+            if token.group().startswith("</"):
+                depth -= 1
+                if depth == 0:
+                    end = start + len(opening) + token.end()
+                    break
+            else:
+                depth += 1
+        if end is None:
+            raise ValueError("Homepage product mega-menu has unbalanced markup")
+        page = page[:start] + opening + menu + "</div>" + page[end:]
+    page = re.sub(
+        r"Browse all \d+ products",
+        f"Browse all {product_count(catalog)} products",
+        page,
+        count=1,
+    )
     homepage.write_text(page, encoding="utf-8")
 
 
@@ -489,7 +683,7 @@ def legacy_redirect_page(target):
 <link rel="canonical" href="{escape(target)}">
 <title>Page moved | Nilkanth Packaging Industries</title>
 <style>
-*{{box-sizing:border-box}}body{{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f6f5;color:#20282d;font:16px/1.6 Arial,sans-serif}}main{{max-width:560px;padding:32px;background:#fff;border:1px solid #e4e8e9}}a{{color:#b63338;font-weight:700}}
+*{{box-sizing:border-box}}body{{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f8fb;color:#1b2733;font:16px/1.6 Arial,sans-serif}}main{{max-width:560px;padding:32px;background:#fff;border:1px solid #d8e2ec}}a{{color:#0b84d6;font-weight:700}}
 </style>
 </head><body><main><h1>This product page has moved</h1>
 <p>We are taking you to the current Nilkanth Packaging Industries product catalogue.</p>
